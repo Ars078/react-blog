@@ -1,16 +1,22 @@
+import { BrowserRouter as Router, Route, Switch, } from 'react-router-dom';
 import './App.css';
-import { BlogContent } from './components/BlogContent/BlogContent';
+import {BlogPage } from './containers/BlogPage/BlogPage';
 import { Footer } from './components/Fotter/Footer';
 import { Header } from './components/Header/Header';
+import { LoginPage } from './containers/LoginPage/LoginPage';
 
 export function App() {
   return (
+    <Router>
     <div className="App">
 
       <Header />
 
       <main>
-      <BlogContent/>
+      <Switch>
+        <Route exact path='/' component={BlogPage}/>
+        <Route exact path='/login' component={LoginPage}/>
+      </Switch>
       </main>
 
       <Footer
@@ -18,6 +24,7 @@ export function App() {
       />
       
     </div>
+    </Router>
   );
 }
 

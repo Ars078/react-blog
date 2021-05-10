@@ -1,3 +1,5 @@
+export const postsUrl = 'https://6096d51e116f3f00174b3a1c.mockapi.io/posts/'
+
 export const posts = [
     {
       id: 1,
