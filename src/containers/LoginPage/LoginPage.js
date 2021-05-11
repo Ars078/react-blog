@@ -1,10 +1,33 @@
+import { useState } from "react";
 import "./LoginPage.css";
 
-export const LoginPage = (props) => {
+export const LoginPage = ({
+  setIsLoggedIn,
+  history,
+  setUserName
+}) => {
+    const [login, setLogin] = useState('')
+    const [password, setPassword] = useState('')
+
+    const handleLoginChange = (e) => {
+      setLogin(e.target.value)
+  }
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value)
+}
     const handleLogin = (e) => {
         e.preventDefault()
-        props.history.push('/')
+
+        localStorage.setItem('isLoggedIn', true)
+        localStorage.setItem('userName', login)
+        setUserName(login)
+        setIsLoggedIn(true)
+        history.push('/')
     }
+
+
+
   return (
     <h1>
       <form className="loginForm" onSubmit={handleLogin}>
@@ -14,6 +37,7 @@ export const LoginPage = (props) => {
             className="loginFormInput"
             type="text"
             placeholder="Логин"
+            onChange={handleLoginChange}
             required
           />
         </div>
@@ -22,6 +46,7 @@ export const LoginPage = (props) => {
             className="loginFormInput"
             type="password"
             placeholder="Пароль"
+            onChange={handlePasswordChange}
             required
           />
         </div>
